@@ -1,0 +1,21 @@
+services:
+  agent:
+    build: .
+    container_name: hw5-agent
+
+    ports:
+      - "8000:8000"
+
+    environment:
+      OLLAMA_BASE_URL: http://ollama:11434/v1
+      OLLAMA_MODEL: gpt-oss:20b
+
+    volumes:
+      - ./data:/app/data
+
+    networks:
+      - hw5-network
+
+networks:
+  hw5-network:
+    external: true
